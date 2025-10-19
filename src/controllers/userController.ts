@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { userSigninSchema, userSignupSchema } from "../types/index.js"
 import { compare, genSalt, hash } from "bcrypt";
 import jwt from "jsonwebtoken";
-const { sign } = jwt;
+const { sign,verify } = jwt;
 import { COOKIE_NAME } from "../utils/constant.js";
 export const userSignup=async (req: Request, res: Response) => {
     const { name, lastName, email, password } = req.body;
@@ -34,7 +34,8 @@ export const userSignup=async (req: Request, res: Response) => {
             res.clearCookie(COOKIE_NAME, {
                 httpOnly: true,
                 signed: true,
-                path: "/"
+                path: "/",
+                secure:false
             })
             const expires = new Date();
             expires.setDate(expires.getDate() + 7);
@@ -42,7 +43,8 @@ export const userSignup=async (req: Request, res: Response) => {
                 httpOnly: true,
                 signed: true,
                 expires,
-                path: "/"
+                path: "/",
+                secure:false
             });
             return res.json({
                 msg: "User signed up successfully",
@@ -121,4 +123,35 @@ try {
         msg:"Internal server error"
     })
 }
+}
+
+export const verifyUser=async(req:Request,res:Response)=>{
+//res.locals.data is not persistent like req.userId and it will end if response is sent once
+//so here we are using it simply as because on context-value update it will trigger re-renders of children
+//so thats why we will have one route to check auth-status simply and update states
+//in front-end
+try {
+    const getUser=await User.findById(res.locals.jwtData.userId); 
+    if(!getUser)
+    {
+        res.status(401).json({
+            msg:"Invalid user"
+        })
+    }
+    if(getUser._id.toString()!==res.locals.jwtData.userId)
+    {
+        res.status(401).json({
+            msg:"Permissions didnt matched"
+        })
+    }
+    res.json({
+        msg:"User is authenticated",
+        user:getUser
+    })
+} catch (error) {
+    res.status(401).json({
+        msg:"Invalid user"+error.message
+    })
+}
+
 }

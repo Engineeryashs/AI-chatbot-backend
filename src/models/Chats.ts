@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
 import mongoose from "mongoose";
+import { generateChatCompletion } from "../controllers/chatController.js";
 const chatSchema = new mongoose.Schema({
     id: {
         type: String,
@@ -14,5 +15,5 @@ const chatSchema = new mongoose.Schema({
         required: true
     }
 })
-const Chats=mongoose.model("Chats",chatSchema);
+const Chats=mongoose.model("Chats",chatSchema,);
 export default Chats;

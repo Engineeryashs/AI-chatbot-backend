@@ -1,0 +1,1 @@
+{"root":["./src/app.ts","./src/index.ts","./src/controllers/usercontroller.ts","./src/db/connection.ts","./src/middlewares/authmiddleware.ts","./src/models/chats.ts","./src/models/user.ts","./src/routers/chatrouter.ts","./src/routers/mainrouter.ts","./src/routers/userrouter.ts","./src/types/index.ts","./src/utils/constant.ts"],"version":"5.8.3"}

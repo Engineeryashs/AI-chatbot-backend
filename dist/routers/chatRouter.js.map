@@ -1,1 +1,1 @@
-{"version":3,"file":"chatRouter.js","sourceRoot":"","sources":["../../src/routers/chatRouter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,SAAS,CAAC;AACjC,MAAM,UAAU,GAAC,MAAM,EAAE,CAAC;AAC1B,eAAe,UAAU,CAAC"}
+{"version":3,"file":"chatRouter.js","sourceRoot":"","sources":["../../src/routers/chatRouter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,SAAS,CAAC;AACjC,OAAO,EAAE,cAAc,EAAE,MAAM,kCAAkC,CAAC;AAClE,MAAM,UAAU,GAAC,MAAM,EAAE,CAAC;AAE1B,UAAU,CAAC,IAAI,CAAC,MAAM,EAAC,cAAc,CAAE,CAAA;AAEvC,eAAe,UAAU,CAAC"}
