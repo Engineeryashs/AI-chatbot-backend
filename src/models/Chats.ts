@@ -15,5 +15,5 @@ const chatSchema = new mongoose.Schema({
         required: true
     }
 })
-const Chats=mongoose.model("Chats",chatSchema,);
+const Chats=mongoose.model("Chats",chatSchema);
 export default Chats;

@@ -153,4 +153,29 @@ export const verifyUser = async (req, res) => {
         });
     }
 };
+export const logOutUser = async (req, res) => {
+    try {
+        const user = await User.findById(res.locals.jwtData.userId);
+        if (!user) {
+            return res.status(401).send("User not registered OR Token malfunctioned");
+        }
+        if (user._id.toString() !== res.locals.jwtData.userId) {
+            return res.status(401).send("Permissions didn't match");
+        }
+        res.clearCookie(COOKIE_NAME, {
+            httpOnly: true,
+            signed: true,
+            path: "/"
+        });
+        res.json({
+            msg: "User Logged out and cleared the cookie"
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: "Internal Server Error"
+        });
+    }
+};
 //# sourceMappingURL=userController.js.map

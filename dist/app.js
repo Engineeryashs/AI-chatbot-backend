@@ -8,9 +8,9 @@ import cookieParser from "cookie-parser";
 config();
 const app = express();
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use("/api/v1", mainRouter);
 export default app;
 //# sourceMappingURL=app.js.map
